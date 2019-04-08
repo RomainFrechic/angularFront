@@ -12,8 +12,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class SignupFormComponent implements OnInit {
 
   public form: FormGroup;
-  //propriete pour le genre
-  public gender: string[];
+
   //propriete pour l'User
   private user: User;
 
@@ -21,26 +20,27 @@ export class SignupFormComponent implements OnInit {
   constructor(private fb: FormBuilder){}
 
   ngOnInit() {
-    /*this.form = new FormGroup({
+    /*
+    Formulaire Reactive de basa
+    this.form = new FormGroup({
          email: new FormControl('', [Validators.required, Validators.email]),
           password: new FormControl('', [Validators.required, Validators.minLength(12)]),
           confirmPassword: new FormControl('', [Validators.required, Validators.minLength(12)]),
           gender: new FormControl('', [Validators.required])
      });*/
 
+     /*Formulaire Reactive Factoriser */
      this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(12)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(12)]],
-      gender: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required, Validators.minLength(12)]]
+
      });
 
-      this.gender = ['Male', 'Female', 'Others'];
 
       //creation d'un nouvel objet user
       this.user = new User({
-            email:"", password: { pwd: "", confirm_pwd: ""},
-            gender: this.gender[0], terms:false});
+            email:"", password: { pwd: "", confirm_pwd: ""}, terms:false});
   }
 
 }
